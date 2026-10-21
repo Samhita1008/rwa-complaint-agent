@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" width="1200" height="320" role="img" aria-label="RWA Complaint and Vendor Coordination Agent">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#050807"/>
+      <stop offset="1" stop-color="#0b1511"/>
+    </linearGradient>
+    <linearGradient id="mint" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#5CF2B0"/>
+      <stop offset="1" stop-color="#2FD08A"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#14231c" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="320" fill="url(#bg)"/>
+  <rect width="1200" height="320" fill="url(#grid)" opacity="0.7"/>
+  <circle cx="1040" cy="160" r="150" fill="#5CF2B0" opacity="0.05"/>
+  <circle cx="1040" cy="160" r="95" fill="none" stroke="#5CF2B0" stroke-opacity="0.25"/>
+
+  <!-- building icon -->
+  <g transform="translate(985,95)" fill="none" stroke="url(#mint)" stroke-width="3" stroke-linejoin="round">
+    <rect x="0" y="20" width="70" height="100" rx="4"/>
+    <rect x="70" y="60" width="40" height="60" rx="4"/>
+    <path d="M14 42h12M44 42h12M14 66h12M44 66h12M14 90h12M44 90h12M82 82h16M82 100h16"/>
+  </g>
+
+  <text x="60" y="108" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" letter-spacing="4" fill="#5CF2B0">EDIT THEORY  ·  AI AUTOMATION</text>
+  <text x="60" y="170" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="52" font-weight="700" fill="#F2F7F4">RWA Complaint &amp; Vendor</text>
+  <text x="60" y="228" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="52" font-weight="700" fill="url(#mint)">Coordination Agent</text>
+  <text x="60" y="270" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="20" fill="#8FA89C">From "the lift is broken again" to a resolved ticket, without the group-chat chaos.</text>
+</svg>

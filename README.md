@@ -8,11 +8,11 @@
 ![Groq](https://img.shields.io/badge/Groq-llama--3.3--70b-F55036?style=for-the-badge)
 ![Telegram](https://img.shields.io/badge/Telegram-bot-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)
 ![Google Sheets](https://img.shields.io/badge/Google%20Sheets-ledger-34A853?style=for-the-badge&logo=googlesheets&logoColor=white)
-![Status](https://img.shields.io/badge/status-3%20of%204%20workflows%20built-5CF2B0?style=for-the-badge&labelColor=0b1511)
+![Status](https://img.shields.io/badge/status-built%20%26%20tested%2C%20not%20piloted-5CF2B0?style=for-the-badge&labelColor=0b1511)
 
-**An AI agent that runs the complaint desk of an Indian apartment society, so the secretary doesn't have to.**
+**An AI agent that runs the complaint desk of an Indian apartment society, with the secretary approving everything that leaves the building.**
 
-[How it works](#how-it-works) · [The four workflows](#the-four-workflows) · [Status](#honest-status) · [Run it](#run-it-yourself) · [Engineering notes](#engineering-notes)
+[The problem](#the-problem) · [How it works](#how-it-works) · [Workflows](#the-four-workflows) · [Status](#honest-status) · [Engineering notes](#engineering-notes)
 
 </div>
 
@@ -20,13 +20,13 @@
 
 ## The problem
 
-Every residential society (RWA) in India runs on the same broken loop. A resident complains in a 300-person WhatsApp group. The message scrolls away. The secretary phones a plumber from memory. Nobody knows if it got fixed until the same resident complains again, louder.
+Every residential society (RWA) in India runs on the same loop. A resident complains in a 300-person WhatsApp group. The message scrolls away. The secretary phones a plumber from memory. Nobody knows if it got fixed until the same resident complains again, louder.
 
 There is no ticket, no record, no owner, and no closure.
 
 ## The fix
 
-Residents message one bot. The agent does the rest, and the secretary stays in control of anything that leaves the building.
+Residents message one bot. The agent logs, classifies, drafts and tracks. The secretary stays in control of anything that goes to a vendor or to the whole society.
 
 <div align="center">
 <img src="./assets/telegram-flow.svg" alt="Resident, secretary and ledger views" width="100%" />
@@ -34,11 +34,11 @@ Residents message one bot. The agent does the rest, and the secretary stays in c
 
 | Before | After |
 |---|---|
-| Complaint buried in a group chat | Logged as a ticket with ID, flat, category, urgency |
-| Secretary hunts for the right vendor's number | Vendor message drafted from a per-category list |
-| Vendor contacted with no oversight | Secretary approves in Telegram before anything goes out |
-| Resident never hears back | Resident is notified automatically when it's resolved |
-| No history | Every ticket lives in a Google Sheet |
+| Complaint buried in a group chat | Logged as a ticket with ID, flat, category and urgency |
+| Secretary hunts for the right vendor's number | Vendor message drafted from a per-category vendor list |
+| Vendor contacted with no oversight | Secretary approves in Telegram first |
+| Resident never hears back | Resident is notified automatically on resolution |
+| "Did everyone see the notice?" | Acknowledgements logged per resident |
 
 ## How it works
 
@@ -46,89 +46,92 @@ Residents message one bot. The agent does the rest, and the secretary stays in c
 <img src="./assets/architecture.svg" alt="System architecture" width="100%" />
 </div>
 
-One n8n canvas, separate chains per workflow, one Google Sheet as the system of record.
+Four workflows on one n8n canvas, one Google Sheet as the system of record.
 
 ## The four workflows
 
-Built one at a time, each tested end to end before starting the next.
+Built and tested one at a time.
 
-### 1. Complaint Intake  `built`
-Resident messages the bot. Groq classifies the complaint into a category and urgency. The agent resolves the resident from a Residents tab, creates a ticket, appends it to the Sheet, and confirms back to the resident.
+### 1. Complaint Intake
+A resident messages the bot ("water leak in B-402"). Groq classifies category (plumbing, electrical, security, common-area, other) and urgency (low, medium, high). The ticket is logged to Google Sheets with a ticket ID, flat number, status and timestamp. The resident gets the ticket ID back.
 
-### 2. Vendor Dispatch  `built`
-A new row in the Complaints sheet triggers the chain. Groq drafts a vendor message using the vendor list for that category. The secretary gets it on Telegram to approve. On approval they receive a `wa.me` link that opens WhatsApp with the message ready to send.
+### 2. Vendor Dispatch
+A new ticket triggers a lookup in the society's vendor list for that category. Groq drafts a short dispatch message. The secretary gets it on Telegram with Approve and Disapprove buttons. On approval she gets a pre-filled WhatsApp link to send to the vendor, and the ticket becomes `dispatched`. If no vendor exists for the category, she is told to handle it manually.
 
-### 3. Status Tracking  `built`
-The secretary sends `/resolve <ticket_id>`. The Sheet updates and the resident gets an automatic resolution message.
+### 3. Status Tracking
+The secretary sends `/resolve <ticket_id>`. The sheet updates with `resolved` and a timestamp, and the resident is notified automatically. Only the secretary's chat can resolve tickets.
 
-### 4. Notice Broadcast  `planned`
-Secretary drafts a notice through the bot, the agent formats it, broadcasts it to residents, and tracks acknowledgments in the Sheet.
+### 4. Notice Broadcast
+The secretary sends `/notice <text>`. Groq formats it without adding facts, she approves a preview, and it is sent to every resident on file. Residents reply `/ack`, and each acknowledgement is logged to a sheet, so she doesn't scroll a group chat to see who has seen it.
 
 ## Design principles
 
-- **Human in the loop.** Nothing is sent to a vendor without the secretary's approval.
-- **One source of truth.** A single Google Sheet with `Complaints` and `Residents` tabs. Anyone on the committee can open it without a login to some new tool.
-- **Free-tier friendly.** Groq, Sheets, Telegram and self-hosted n8n. No per-seat SaaS bill for a society that is deciding whether to pay for a parking sticker.
-- **Portable.** Config lives in one node. Swap the Sheet, the vendor list and the bot token, and it runs for a different society.
+- **Human in the loop.** Nothing reaches a vendor or the residents without the secretary's approval. The AI drafts, a person decides.
+- **One source of truth.** A single Google Sheet the committee can open and read.
+- **Free-tier friendly.** Groq, Sheets, Telegram and self-hosted n8n. No per-seat software bill.
+- **Portable per society.** Sheet IDs, society name and categories live in one Config node. A new society means changing that node and the sheets, not the workflow logic.
+- **No invented content.** The notice formatter is told to keep every fact exactly as given and add nothing.
 
 ## Honest status
 
-This is a working build, not a deployed product. Being clear about that:
+A working build, not a production deployment.
 
 | Piece | State |
 |---|---|
-| Workflows 1, 2, 3 | Built and tested end to end |
-| Workflow 4 (notice broadcast) | Not started |
-| Vendor messaging | Manual send via `wa.me` link. No WhatsApp Business API yet |
-| Real-society pilot | None yet. Looking for an RWA secretary to trial it |
+| All four workflows | Built and tested end to end on test data (test residents, test vendors, my own Telegram account) |
+| Real-society pilot | Not done yet |
+| Vendor messaging | Pre-filled WhatsApp link the secretary taps. WhatsApp Cloud API is not connected |
+| Hosting | Local Docker with an ngrok tunnel, so it is offline when that machine is off |
 | Usage numbers | None to report, so none are claimed |
 
 ## Stack
 
 | Layer | Tool |
 |---|---|
-| Orchestration | n8n (self-hosted, Docker) |
+| Orchestration | n8n (self-hosted, local Docker) |
 | LLM | Groq, `llama-3.3-70b-versatile` |
 | Messaging | Telegram Bot API |
 | Data | Google Sheets |
-| Local webhook exposure | ngrok (static domain) |
+| Tunnel | ngrok |
 
-## Run it yourself
+## Sheet structure
 
-1. Run n8n locally with Docker and expose it with an ngrok domain so Telegram can reach your webhook.
-2. Create a Telegram bot with BotFather and add the token as an n8n credential.
-3. Create a Google Sheet with two tabs: `Complaints` (ticket_id, flat, category, urgency, status, timestamp, chat_id, description) and `Residents`.
-4. Add your Groq API key as an n8n credential.
-5. Edit the **Config** node in each workflow: sheet ID, secretary chat ID, vendor list.
-6. Activate the workflows and message your bot.
-
-> Workflow exports are not published in this repo. Reach out if you want to see it running.
+- `Complaints`: ticket_id, flat_number, category, urgency, resident_message, status, timestamp, chat_id, resolved_at
+- `Residents`: chat_id, flat_number, resident_name
+- `Vendors`: category, vendor_name, phone
+- `Notices`: notice_id, text, sent_at
+- `Acks`: notice_id, chat_id, flat_number, resident_name, acked_at
 
 ## Engineering notes
 
-Real problems hit while building this, kept because they cost hours.
+Real problems hit while building this.
 
-- **Use `$json['field']`, not `.item` selectors.** `.item` breaks on multi-item executions.
-- **An AI Agent node drops every upstream field.** Add a Merge node (Combine by Position) after each one to reattach context.
-- **Groq wraps JSON in markdown fences.** Strip them before `JSON.parse()`:
-  ```js
-  JSON.parse(text.replace(/```json|```/g, '').trim())
-  ```
-- **Telegram webhooks need a stable public URL.** A static ngrok domain beats re-registering the webhook every restart.
+- **One Telegram trigger per bot.** A bot has one webhook, so `/resolve`, `/notice`, `/ack` and normal complaints all enter through the same trigger and are split with IF nodes. A second trigger would conflict.
+- **Fixed vs Expression mode.** A value typed with a leading `=` in a Fixed field is stored as literal text. The resident lookup silently matched nothing until this was found.
+- **After a Sheets node, `$json` is the sheet row.** The original message is gone. Reference earlier nodes by name instead, for example `$('Create Ticket').first().json.ticket_id`.
+- **Always Output Data on lookups.** A Get Row(s) that finds nothing stops the workflow. Turning this on lets the "not found" and "no vendor" branches run.
+- **Strip Groq's markdown fences before `JSON.parse()`.** The classifier sometimes wraps JSON in code fences despite being told not to.
+- **Test and production webhooks conflict for Telegram.** n8n can't listen for a test event while the workflow is active. Deactivate to test.
+- **Google Sheets "By List" needs the Drive API.** Without it the dropdown is disabled and the node returns "resource not found".
+- **Telegram can't message people first.** Residents must press Start on the bot before they can receive broadcasts.
 
-## Roadmap
+## Known limitations
 
-- [x] Complaint intake
-- [x] Vendor dispatch with secretary approval
-- [x] Resolution tracking
-- [ ] Notice broadcast with acknowledgment tracking
-- [ ] WhatsApp Business API for vendor messaging
-- [ ] Pilot with a real society
+- Vendor messages need a manual tap on a WhatsApp link until the WhatsApp Cloud API is connected.
+- Residents are added to the `Residents` sheet by hand. There is no self-registration, and no handling yet for an unregistered resident.
+- Duplicate `/ack` messages create duplicate rows. Count unique `chat_id` per `notice_id`.
+
+## Next
+
+- [ ] Pilot with a real society secretary
+- [ ] WhatsApp Cloud API for vendor messaging
+- [ ] Resident self-registration
+- [ ] Move off local Docker to always-on hosting
 
 ---
 
 <div align="center">
 
-Built by **Samhita** · [Edit Theory](https://github.com/Samhita1008) · AI automation for real businesses
+Built by **Samhita** · [Edit Theory](https://github.com/Samhita1008)
 
 </div>

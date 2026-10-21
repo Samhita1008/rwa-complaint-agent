@@ -25,7 +25,7 @@
 
     <rect x="20" y="162" width="270" height="130" rx="14" fill="#16221c"/>
     <text x="36" y="188" class="f m">Ticket logged</text>
-    <text x="36" y="212" class="f d">Category: Lift / Elevator</text>
+    <text x="36" y="212" class="f d">Category: Common-area</text>
     <text x="36" y="232" class="f d">Urgency: High</text>
     <text x="36" y="252" class="f d">Status: Open</text>
     <text x="36" y="274" class="f m">We'll keep you posted.</text>
@@ -75,8 +75,8 @@
     </g>
     <line x1="20" y1="94" x2="320" y2="94" stroke="#2a4a3b"/>
     <g class="f m" font-size="13">
-      <text x="20" y="120">T-0042</text><text x="90" y="120">B-402</text><text x="140" y="120">Lift</text><text x="235" y="120">High</text><text x="290" y="120" fill="#5CF2B0">Resolved</text>
-      <text x="20" y="150">T-0041</text><text x="90" y="150">A-101</text><text x="140" y="150">Water</text><text x="235" y="150">Medium</text><text x="290" y="150">Open</text>
+      <text x="20" y="120">T-0042</text><text x="90" y="120">B-402</text><text x="140" y="120">Common-area</text><text x="235" y="120">High</text><text x="290" y="120" fill="#5CF2B0">Resolved</text>
+      <text x="20" y="150">T-0041</text><text x="90" y="150">A-101</text><text x="140" y="150">Plumbing</text><text x="235" y="150">Medium</text><text x="290" y="150">Open</text>
       <text x="20" y="180">T-0040</text><text x="90" y="180">C-206</text><text x="140" y="180">Plumbing</text><text x="235" y="180">Low</text><text x="290" y="180">Open</text>
     </g>
     <text x="20" y="420" class="f d">Sample rows for illustration.</text>

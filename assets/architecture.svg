@@ -78,7 +78,8 @@
   <path d="M250 465H318" class="ln"/><path d="M530 465H598" class="ln"/>
 
   <!-- coming soon -->
-  <rect x="890" y="430" width="270" height="70" rx="10" fill="none" stroke="#2a4a3b" stroke-dasharray="6 6"/>
-  <text x="1025" y="460" text-anchor="middle" class="t" font-size="15" font-weight="600" opacity="0.8">4 · Notice Broadcast</text>
-  <text x="1025" y="482" text-anchor="middle" class="s">planned, not built yet</text>
+  <rect x="880" y="410" width="280" height="90" rx="10" class="hot"/>
+  <text x="1020" y="438" text-anchor="middle" class="tag">4 · NOTICE BROADCAST</text>
+  <text x="1020" y="462" text-anchor="middle" class="t" font-size="14" font-weight="600">/notice → approve → send to all</text>
+  <text x="1020" y="484" text-anchor="middle" class="s">/ack replies logged per resident</text>
 </svg>

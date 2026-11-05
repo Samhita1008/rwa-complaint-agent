@@ -1,31 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" width="1200" height="320" role="img" aria-label="RWA Complaint and Vendor Coordination Agent">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#050807"/>
-      <stop offset="1" stop-color="#0b1511"/>
-    </linearGradient>
-    <linearGradient id="mint" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#5CF2B0"/>
-      <stop offset="1" stop-color="#2FD08A"/>
-    </linearGradient>
-    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M40 0H0V40" fill="none" stroke="#14231c" stroke-width="1"/>
-    </pattern>
-  </defs>
-  <rect width="1200" height="320" fill="url(#bg)"/>
-  <rect width="1200" height="320" fill="url(#grid)" opacity="0.7"/>
-  <circle cx="1040" cy="160" r="150" fill="#5CF2B0" opacity="0.05"/>
-  <circle cx="1040" cy="160" r="95" fill="none" stroke="#5CF2B0" stroke-opacity="0.25"/>
-
-  <!-- building icon -->
-  <g transform="translate(985,95)" fill="none" stroke="url(#mint)" stroke-width="3" stroke-linejoin="round">
-    <rect x="0" y="20" width="70" height="100" rx="4"/>
-    <rect x="70" y="60" width="40" height="60" rx="4"/>
-    <path d="M14 42h12M44 42h12M14 66h12M44 66h12M14 90h12M44 90h12M82 82h16M82 100h16"/>
-  </g>
-
-  <text x="60" y="108" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" letter-spacing="4" fill="#5CF2B0">EDIT THEORY  ·  AI AUTOMATION</text>
-  <text x="60" y="170" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="52" font-weight="700" fill="#F2F7F4">RWA Complaint &amp; Vendor</text>
-  <text x="60" y="228" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="52" font-weight="700" fill="url(#mint)">Coordination Agent</text>
-  <text x="60" y="270" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="20" fill="#8FA89C">From "the lift is broken again" to a resolved ticket, without the group-chat chaos.</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" width="1200" height="320" role="img" aria-label="Complaints, closed with a ticket."><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6C151E"/><stop offset="1" stop-color="#34090f"/></linearGradient>
+<pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.1" fill="#F5DABF" fill-opacity=".09"/></pattern>
+<clipPath id="panelclip"><polygon points="840,0 1200,0 1200,320 768,320"/></clipPath><style>
+.k{font-family:'SF Mono',Menlo,Consolas,monospace;fill:#F5DABF;opacity:.75;letter-spacing:4px}
+.t{font-family:Georgia,'Times New Roman',serif;fill:#F5DABF;font-weight:700}
+.s{font-family:'Segoe UI',Helvetica,Arial,sans-serif;fill:#d4b49b}
+.rise{animation:r 1s cubic-bezier(.2,.7,.2,1) both}
+.d1{animation-delay:.15s}.d2{animation-delay:.3s}.d3{animation-delay:.45s}
+@keyframes r{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.flow{stroke-dasharray:6 8;animation:f 2.2s linear infinite}
+@keyframes f{to{stroke-dashoffset:-28}}
+.pulse{transform-box:fill-box;transform-origin:center;animation:p 3.2s ease-in-out infinite}
+@keyframes p{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(1.14);opacity:1}}
+.blink{animation:b 1.2s steps(1) infinite}@keyframes b{50%{opacity:0}}
+.drift{animation:dr 14s ease-in-out infinite alternate}@keyframes dr{to{transform:translate(-14px,8px)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style></defs><rect width="1200" height="320" fill="url(#bg)"/><rect width="1200" height="320" fill="url(#dots)"/><g clip-path="url(#panelclip)"><rect width="1200" height="320" fill="#0F3D3A"/><rect width="1200" height="320" fill="url(#dots)" opacity=".7"/></g><polygon points="840,0 843,0 771,320 768,320" fill="#F5DABF" opacity=".5"/><g class="drift"><g transform="translate(882.0,100.0) scale(0.8)" fill="none" stroke="#F5DABF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="0" y="20" width="150" height="100" rx="10"/><path class="flow" d="M30 60H120M30 84H90" stroke-opacity=".65"/><path class="flow" d="M156 70H214" /><circle cx="270" cy="70" r="46" fill="#F5DABF" fill-opacity=".14" class="pulse"/><path d="M248 70l16 16 30-34"/></g></g><text x="64" y="70" class="k rise" font-size="15">EDIT THEORY  ·  RWA</text><text x="64" y="146" class="t rise d1" font-size="62">Complaints,</text><text x="64" y="204" class="t rise d2" font-size="62" font-style="italic" font-weight="400">closed with a ticket.</text><text x="64" y="252" class="s rise d3" font-size="21">Complaint and vendor coordination, over Telegram.</text></svg>

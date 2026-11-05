@@ -1,18 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" width="1200" height="520" role="img" aria-label="System architecture">
   <defs>
     <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
-      <path d="M0 0L10 5L0 10z" fill="#5CF2B0"/>
+      <path d="M0 0L10 5L0 10z" fill="#F5DABF"/>
     </marker>
     <style>
-      .t{font-family:Segoe UI,Helvetica,Arial,sans-serif;fill:#F2F7F4}
-      .s{font-family:Segoe UI,Helvetica,Arial,sans-serif;fill:#8FA89C;font-size:13px}
-      .box{fill:#0d1713;stroke:#2a4a3b;stroke-width:1.5}
-      .hot{fill:#0f2219;stroke:#5CF2B0;stroke-width:1.5}
-      .ln{stroke:#5CF2B0;stroke-width:2;fill:none;marker-end:url(#a)}
-      .tag{font-family:Segoe UI,Helvetica,Arial,sans-serif;font-size:12px;fill:#5CF2B0;letter-spacing:2px}
+      .t{font-family:Segoe UI,Helvetica,Arial,sans-serif;fill:#F5DABF}
+      .s{font-family:Segoe UI,Helvetica,Arial,sans-serif;fill:#d4b49b;font-size:13px}
+      .box{fill:#4a0e15;stroke:#8c3a44;stroke-width:1.5}
+      .hot{fill:#0F3D3A;stroke:#F5DABF;stroke-width:1.5}
+      .ln{stroke:#F5DABF;stroke-width:2;fill:none;marker-end:url(#a)}
+      .tag{font-family:Segoe UI,Helvetica,Arial,sans-serif;font-size:12px;fill:#F5DABF;letter-spacing:2px}
     </style>
   </defs>
-  <rect width="1200" height="520" rx="16" fill="#070b09"/>
+  <rect width="1200" height="520" rx="16" fill="#2b0a0e"/>
 
   <!-- lanes -->
   <text x="40" y="52" class="tag">1 · COMPLAINT INTAKE</text>

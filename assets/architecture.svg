@@ -6,13 +6,13 @@
     <style>
       .t{font-family:Segoe UI,Helvetica,Arial,sans-serif;fill:#F5DABF}
       .s{font-family:Segoe UI,Helvetica,Arial,sans-serif;fill:#d4b49b;font-size:13px}
-      .box{fill:#4d0f16;stroke:#c98a7a;stroke-width:1.5}
-      .hot{fill:#0F3D3A;stroke:#F5DABF;stroke-width:1.5}
+      .box{fill:#0b2f2d;stroke:#7fa39a;stroke-width:1.5}
+      .hot{fill:#7d1a29;stroke:#F5DABF;stroke-width:1.5}
       .ln{stroke:#F5DABF;stroke-width:2;fill:none;marker-end:url(#a)}
       .tag{font-family:Segoe UI,Helvetica,Arial,sans-serif;font-size:12px;fill:#F5DABF;letter-spacing:2px}
     </style>
   </defs>
-  <rect width="1200" height="520" rx="16" fill="#6C151E"/>
+  <rect width="1200" height="520" rx="16" fill="#0F3D3A"/>
 
   <!-- lanes -->
   <text x="40" y="52" class="tag">1 · COMPLAINT INTAKE</text>

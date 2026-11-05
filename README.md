@@ -4,11 +4,11 @@
 
 <br/>
 
-![n8n](https://img.shields.io/badge/n8n-self--hosted-9B2335?style=for-the-badge&labelColor=0F3D3A&logo=n8n&logoColor=F5DABF)
-![Groq](https://img.shields.io/badge/Groq-llama--3.3--70b-9B2335?style=for-the-badge&labelColor=0F3D3A)
-![Telegram](https://img.shields.io/badge/Telegram-bot-9B2335?style=for-the-badge&labelColor=0F3D3A&logo=telegram&logoColor=F5DABF)
-![Google Sheets](https://img.shields.io/badge/Google%20Sheets-ledger-9B2335?style=for-the-badge&labelColor=0F3D3A&logo=googlesheets&logoColor=F5DABF)
-![Status](https://img.shields.io/badge/status-built%20%26%20tested%2C%20not%20piloted-9B2335?style=for-the-badge&labelColor=0F3D3A)
+![n8n](https://img.shields.io/badge/n8n-self--hosted-6C151E?style=for-the-badge&labelColor=6C151E&logo=n8n&logoColor=F5DABF)
+![Groq](https://img.shields.io/badge/Groq-llama--3.3--70b-6C151E?style=for-the-badge&labelColor=6C151E)
+![Telegram](https://img.shields.io/badge/Telegram-bot-6C151E?style=for-the-badge&labelColor=6C151E&logo=telegram&logoColor=F5DABF)
+![Google Sheets](https://img.shields.io/badge/Google%20Sheets-ledger-6C151E?style=for-the-badge&labelColor=6C151E&logo=googlesheets&logoColor=F5DABF)
+![Status](https://img.shields.io/badge/status-built%20%26%20tested%2C%20not%20piloted-6C151E?style=for-the-badge&labelColor=6C151E)
 
 **An AI agent that runs the complaint desk of an Indian apartment society, with the secretary approving everything that leaves the building.**
 
